@@ -1,0 +1,18 @@
+import Axios from 'axios';
+
+class Request {
+    static do (method = '', url = '', data = {}, headers = {}) {
+        return new Promise((resolve, reject) => {
+            Axios({
+                method,
+                url,
+                data,
+                headers
+            }).then((response) => {
+                resolve(response.data);
+            });
+        });
+    }
+}
+
+export default Request;
