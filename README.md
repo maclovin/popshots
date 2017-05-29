@@ -1,6 +1,6 @@
-# PopShots
+# oswaldo-cruz-front-test
 
-> Vue Application to view all popular Dribbble shots.
+> Front-end test developed by Murilo Prestes
 
 ## Build Setup
 

@@ -1,40 +1,46 @@
 <template>
-    <container class="home">
-        <shots-list v-bind:shots="shots" />
-    </container>
+  <container class="home">
+    <shots-list v-bind:shots="allShots" v-bind:list-status="listStatus" v-bind:current-page="currentPage" :load-more="loadMore" />
+    <md-snackbar md-position="bottom right" ref="snackbar" md-duration="5000">
+      <span>Connection timeout. Showing limited messages.</span>
+      <md-button class="md-accent" md-theme="light-blue" @click.native="$refs.snackbar.close()">Retry</md-button>
+    </md-snackbar>
+  </container>
 </template>
 
 <script>
-import { ShotsList } from '@/components';
+import ShotsStore from '@/flux/stores/shots';
+import ViewStore from '@/flux/stores/view';
 
 export default {
   name: 'Home',
-  components: { ShotsList },
-  data() {
-    return {
-      shots: [
-        {
-          id: 1,
-          title: 'My Shot Number 1',
-          img: '',
-        },
-        {
-          id: 2,
-          title: 'My Shot Number 2',
-          img: '',
-        },
-        {
-          id: 3,
-          title: 'My Shot Number 3',
-          img: '',
-        },
-      ],
-    };
+  computed: {
+    allShots() {
+      return ShotsStore.state.shots;
+    },
+    listStatus() {
+      return ShotsStore.state.status;
+    },
+    currentPage() {
+      return ShotsStore.state.currentPage;
+    },
+  },
+  beforeCreate: () => {
+    if (ShotsStore.state.shots.length === 0) {
+      ShotsStore.dispatch('fetchAll');
+    }
+
+    ViewStore.dispatch('setTopBarBack', false);
+  },
+  methods: {
+    loadMore() {
+      ShotsStore.dispatch('fetchMore');
+    },
   },
 };
 </script>
 
 <style lang="sass" scoped>
   .home
-    padding: 32px 0
+    padding: 30px 0
 </style>

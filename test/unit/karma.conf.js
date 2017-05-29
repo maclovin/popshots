@@ -18,6 +18,9 @@ module.exports = function (config) {
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
+    client: {
+      captureConsole: false,
+    },
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true,

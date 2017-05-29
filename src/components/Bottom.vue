@@ -1,6 +1,6 @@
 <template>
     <footer>
-        Footer...
+      Explore me on <a href="http://github.com/maclovin/popshots">Github</a>
     </footer>
 </template>
 
@@ -16,6 +16,6 @@ export default {
 
 <style lang="sass" scoped>
   footer
-    color: pink
-
+    color: #2c3e50
+    padding: 10px 0 20px
 </style>

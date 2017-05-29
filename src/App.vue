@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <top />
+    <top v-bind:back="topBarBack" />
     <router-view></router-view>
     <bottom />
   </div>
 </template>
 
 <script>
-import { Top, Bottom } from '@/components';
+import ViewStore from '@/flux/stores/view';
 
 export default {
   name: 'app',
-  components: { Top, Bottom },
+  computed: {
+    topBarBack() {
+      return ViewStore.state.topBar.backButton;
+    },
+  },
 };
 </script>
 
@@ -22,4 +26,13 @@ export default {
   -moz-osx-font-smoothing: grayscale
   text-align: center
   color: #2c3e50
+  margin-top: 64px
+
+.md-card
+  background: white !important
+  margin-bottom: 15px
+
+  .md-icon
+    margin-left: 5px
+    margin-right: 3px
 </style>
