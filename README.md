@@ -1,6 +1,6 @@
-# oswaldo-cruz-front-test
+# Popshots
 
-> Front-end test developed by Murilo Prestes
+> My first project with VueJS
 
 ## Build Setup
 
